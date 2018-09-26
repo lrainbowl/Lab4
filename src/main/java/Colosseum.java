@@ -73,24 +73,32 @@ public class Colosseum {
      */
     public static Pokemon buildPokemon() {
         Pokemon tempPokemon = new Pokemon();
+
         System.out.println("Please name your Pokemon: ");
         tempPokemon.name = myScan.next();
+
         System.out.println("How many hit points will it have? (1-50): ");
-        while (myScan.nextInt() < 1 || myScan.nextInt() > MAX_HIT_POINTS) {
-            System.out.println("Sorry. Hit points must be between 1 and 50: ");
-        }
         tempPokemon.hitPoints = myScan.nextInt();
+        while (tempPokemon.hitPoints < 1 || tempPokemon.hitPoints > MAX_HIT_POINTS) {
+            System.out.println("Sorry. Hit points must be between 1 and 50: ");
+            tempPokemon.hitPoints = myScan.nextInt();
+        }
+
         System.out.println("Split fifty points between attack level and defense level" + "\n"
                 + "Enter your attack level (1-49): ");
-        while (myScan.nextInt() < 1 || myScan.nextInt() > 49) {
-            System.out.println("Sorry. The attack level must be between 1 and 49: ");
-        }
         tempPokemon.attackLevel = myScan.nextInt();
-        System.out.println("Enter your defense level (1-" + (50-tempPokemon.attackLevel) + "): ");
-        while (myScan.nextInt() < 1 || myScan.nextInt() > 50-tempPokemon.attackLevel) {
-            System.out.println("Sorry. The defense level must be between 1 and " + (50-tempPokemon.attackLevel) + ": ");
+        while (tempPokemon.attackLevel < 1 || tempPokemon.attackLevel > 49) {
+            System.out.println("Sorry. The attack level must be between 1 and 49: ");
+            tempPokemon.attackLevel = myScan.nextInt();
         }
+
+        System.out.println("Enter your defense level (1-" + (50-tempPokemon.attackLevel) + "): ");
         tempPokemon.defenseLevel = myScan.nextInt();
+        while (tempPokemon.defenseLevel < 1 || tempPokemon.defenseLevel > 50-tempPokemon.attackLevel) {
+            System.out.println("Sorry. The defense level must be between 1 and " + (50-tempPokemon.attackLevel) + ": ");
+            tempPokemon.defenseLevel = myScan.nextInt();
+        }
+
         return tempPokemon;
     }
 
