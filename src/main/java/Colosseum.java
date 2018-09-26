@@ -133,7 +133,11 @@ public class Colosseum {
      * Write this function.
      */
     public static void determineWinner() {
-        System.out.println("Implement me!");
+        if (firstPokemon.hitPoints < 1) {
+            System.out.println(secondPokemon.name + " is WINNER!!");
+        } else {
+            System.out.println(firstPokemon.name + " is WINNER!!");
+        }
     }
 
     /**
